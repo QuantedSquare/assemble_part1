@@ -1,0 +1,8 @@
+function coords(squareCounter, params){
+    var nb = Math.floor(params.svgWidth / params.squareWidth) ;
+    var y = Math.floor(squareCounter / nb);
+    var x = (squareCounter % nb)* params.squareWidth
+    var coord = {x: x, y: y * params.squareWidth};
+    return coord;
+
+}

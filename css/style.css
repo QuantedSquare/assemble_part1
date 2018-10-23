@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Tenor+Sans");
+
+/*font-family: 'Archivo Black', sans-serif;
+font-family: 'Tenor Sans', sans-serif;*/
+
+p {
+    font-family: "Tenor Sans", sans-serif;
+}
+
+.mainSplashBg {
+    background-color: #2953f3;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+rect {
+    stroke: white;
+    stroke-width: 2px;
+}
+
+.title {
+    font-family: "Archivo Black", sans-serif;
+}
+
+.mainTitle {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    z-index: 1;
+    font-size: 4rem;
+    color: white;
+}
+
+.deputies {
+    fill: black;
+}
+
+.fonctionnaires {
+    fill: blue;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.reader {
+    width: 1px;
+    margin-left: 50%;
+    margin-top: 20vh;
+    height: 60vh;
+    background-color: #ecf0f1;
+}
