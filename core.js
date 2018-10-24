@@ -1,6 +1,29 @@
 var defaultParams = {
     introColor: "black",
     baseColor: "blue",
+    deputiesColor: "",
+
+    presidentColor: "",
+    questeurColor: "",
+    vice_presidentColor: "",
+    secretaireColor: "",
+
+    fonctionnairesColor: "",
+
+    generalFoncsColor: "",
+    specialFoncsColor: "",
+
+    administrateursColor: "#1abc9c",
+    administrateurs_adjointsColor: "#f1c40f",
+    assistants_directionColor: "#3498db",
+    agentsColor: "#e74c3c",
+    redacteursColor: "#9b59b6",
+    gardiensColor: "#bdc3c7",
+    informatiqueColor: "#34495e",
+    batimentColor: "#16a085",
+    restaurationColor: "#f1c40f",
+    diversColor: "#e67e22",
+
     triggerStepHeightPad: 0
 };
 
@@ -8,6 +31,8 @@ var derniere_position_de_scroll_connue = 0;
 var ticking = false;
 
 var Step = 0;
+
+var marginTwenty = window.innerHeight * 0.25;
 
 function faitQuelquechose(position_scroll) {
     var stepHeight = window.innerHeight + defaultParams.triggerStepHeightPad;
@@ -33,25 +58,46 @@ function faitQuelquechose(position_scroll) {
 
     if (
         position_scroll > stepHeight * 3.5 &&
-        position_scroll < stepHeight * 4.5 &&
+        position_scroll < stepHeight * 6.5 &&
         Step != 2
     ) {
         Step = 2;
-        // stepOne();
+
         stepPresident();
-        //stepIntro();
+
         console.log("Step: ", Step);
     }
 
     if (
-        position_scroll > stepHeight * 5.5 &&
-        position_scroll < stepHeight * 6.5 &&
+        position_scroll > stepHeight * 6.5 &&
+        position_scroll < stepHeight * 10.5 &&
         Step != 3
     ) {
         Step = 3;
         stepOne();
-        //stepPresident();
-        //stepIntro();
+
+        console.log("Step: ", Step);
+    }
+
+    if (
+        position_scroll > stepHeight * 10.5 &&
+        position_scroll < stepHeight * 13.5 &&
+        Step != 4
+    ) {
+        Step = 4;
+        stepTwo();
+
+        console.log("Step: ", Step);
+    }
+
+    if (
+        position_scroll > stepHeight * 13.5 &&
+        position_scroll < stepHeight * 16.5 &&
+        Step != 5
+    ) {
+        Step = 5;
+        stepThree();
+
         console.log("Step: ", Step);
     }
 }
@@ -139,7 +185,7 @@ var svgCercle = d3
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 750 400")
+    .attr("viewBox", "0 0 750 700")
     .classed("svg-content-responsive", true);
 
 var pointsDeputies = svgCercle
@@ -154,11 +200,10 @@ newPointsDeputies
     .append("circle")
     .classed("deputie", true)
     .attr("cx", (d, i) => {
-        console.log("D: ", d);
         return dataCercle[i].x;
     })
     .attr("cy", (d, i) => {
-        return -dataCercle[i].y + 300;
+        return -dataCercle[i].y + 300 + marginTwenty;
     })
     .attr("r", 3)
     .attr("height", 10)
@@ -183,7 +228,7 @@ function stepDefault() {
             return dataCercle[i].x;
         })
         .attr("cy", (d, i) => {
-            return -dataCercle[i].y + 300;
+            return -dataCercle[i].y + 300 + marginTwenty;
         })
         .attr("r", 3)
         .attr("height", 10)
@@ -234,14 +279,13 @@ function stepPresident() {
         .duration(1000)
         .attr("fill", "yellow");
 }
-
+var params = {
+    svgWidth: 640,
+    svgHeight: 600,
+    squareWidth: 10,
+    strokeWidth: 2
+};
 function stepOne() {
-    var params = {
-        svgWidth: 640,
-        svgHeight: 600,
-        squareWidth: 10,
-        strokeWidth: 2
-    };
     console.log("scroll");
 
     var pointsFonctionnaires = svgCercle
@@ -253,14 +297,16 @@ function stepOne() {
     var enterFonctionnaires = pointsFonctionnaires
         .enter()
         .append("circle")
+        .attr("class", "fonctionnaire")
+        .attr("fill", "orange")
         .transition()
         .duration(1000)
         .attr("r", 3)
         .attr("cx", function(d, i) {
-            return coords(d.id, params).x;
+            return coords(d.id, params).x + 10;
         })
         .attr("cy", function(d, i) {
-            return coords(d.id, params).y;
+            return coords(d.id, params).y + 20 + marginTwenty;
         });
 
     svgCercle
@@ -269,10 +315,53 @@ function stepOne() {
         .transition()
         .duration(1000)
         .attr("cx", function(d, i) {
-            return coords(d.id, params).x;
+            return coords(d.id, params).x + 10;
         })
         .attr("cy", function(d, i) {
-            return coords(d.id, params).y;
+            return coords(d.id, params).y + 10 + marginTwenty;
+        });
+}
+
+function stepTwo() {
+    svgCercle
+        .selectAll(".fonctionnaire")
+        .attr("fill", "purple")
+        .transition()
+        .duration(1000)
+        .attr("fill", (d, i) => {
+            //console.log("d fill: ", d);
+
+            return defaultParams[d.title + "Color"];
+        });
+}
+
+function stepThree() {
+    svgCercle
+        .selectAll("circle")
+        .filter(d => d.group == "députés")
+        .transition()
+        .duration(1000)
+        .attr("cx", (d, i) => {
+            return dataCercle[i].x;
+        })
+        .attr("cy", (d, i) => {
+            return -dataCercle[i].y + 300;
+        })
+        .attr("r", 3)
+        .attr("height", 10)
+        .attr("width", 10)
+        .attr("fill", defaultParams.introColor);
+
+    svgCercle
+        .selectAll("circle")
+        .filter(d => d.group == "fonctionnaires")
+        .transition()
+        .duration(1000)
+        .attr("cx", function(d, i) {
+            return coords(d.id, params).x + 10;
+        })
+        .attr("cy", function(d, i) {
+            return coords(d.id, params).y + 100 + marginTwenty;
         });
 }
 

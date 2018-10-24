@@ -39,11 +39,11 @@ function formatData() {
         data.push({ id: i, group: "députés", title: "questeur" });
     }
     for (var i = 4; i < 10; i++) {
-        data.push({ id: i, group: "députés", title: "vice-president" });
+        data.push({ id: i, group: "députés", title: "vice_president" });
     }
 
     for (var i = 10; i < 22; i++) {
-        data.push({ id: i, group: "députés", title: "secrétaire" });
+        data.push({ id: i, group: "députés", title: "secretaire" });
     }
 
     for (var i = 22; i < 577; i++) {
@@ -83,7 +83,7 @@ function formatData() {
         data.push({
             id: i,
             group: "fonctionnaires",
-            title: "rédacteurs"
+            title: "redacteurs"
         });
     }
     for (var i = 1517; i < 1573; i++) {

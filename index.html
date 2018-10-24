@@ -1,385 +1,158 @@
-
-
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fullpage.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 
-<head />
+<body style="height: 2000px">
+    <div class="mainSplashBg"></div>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          quanted Square
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">
 
 
-<body>
+        <div style="position: relative;">
+           
+                <h1  class="title mainTitle">REGARD <br />SUR <br /> L' ASSEMBLEE</h1>
+            </div>
 
-    <svg class="demicercle"
-        width="640"
-        height="640"
-        style="margin-bottom: 100px"
-        >
+      
 
-    </svg>
+         <div class="columns">
+            <div class="column is-three-fifths" style="position: fixed;top:0;padding-top: 0;">
+                <div id="chart">
+<!--                 <svg class="demicercle"
+                width="705"
+                height="360"
+                style="background-color: grey; "
+                >
+            </svg>  -->                   
+                </div>
 
-    
-    <svg style="float: left" class="squares"
-        width="640"
-        height="600">
-    </svg>
-    <div style="float: left; padding-left: 15px; ">
-        <button  onclick="">Initial</button>
-        <button  onclick="focusFonctionnaires()">Step 1</button>
-        <button  onclick="">Step 2</button>  
-        <h1>test</h1>
-        <p></p>      
+            </div>
+        </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column" style="margin-top:130vh">
+
+                    <div >
+                        <h2 class="title">577 députées</h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column">
+                    <div class="reader"></div>
+                    <div style=" margin-top: 20vh">
+                        <h2 class="title">Président/Vice Présidents/ Questeur</h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column">
+                    <div class="reader"></div>
+                    <div style=" margin-top: 20vh">
+                        <h2 class="title">Fonctionnaires / Députés</h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column">
+                    <div class="reader"></div>
+                    <div style=" margin-top: 20vh">
+                        <h2 class="title">Fonctionnaires Généraux </h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column">
+                    <div class="reader"></div>
+                    <div style=" margin-top: 20vh">
+                        <h2 class="title">Fonctionnaires Spécialisés </h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-three-fifths">
+                    
+                </div>
+                <div class="column">
+                    <div class="reader"></div>
+                    <div style=" margin-top: 20vh">
+                        <h2 class="title">Conclusion </h2>                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolores placeat architecto, consectetur unde! Labore sed vero dolore ex quaerat reprehenderit itaque at optio consequatur iusto ut, nemo aspernatur necessitatibus.</p>                                            
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column">
+                
+
+                </div>
+            </div>
     </div>
 
+<footer class="footer" style="margin-top: 100px;">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+    <script src="lib//jquery-3.3.1.min.js"></script>
+    <script src="lib/fullpage.min.js"></script>
     <script src="lib/d3.min.js"></script>
-    <script>
 
-        function testingTrigo(radius, nbPoints){
-            var coords = [];
-            var angle;
-            for (var i = 0; i <= nbPoints; i++) {
-                if(i < nbPoints/2)
-                    angle = radius*Math.cos(Math.PI/nbPoints*i)
-                else
-                    angle = radius*Math.cos(Math.PI/nbPoints*i)
-                coords.push({x: angle, y: -radius*Math.sin(Math.PI/nbPoints*i)});
+    <script src="utils.js"></script>
+    <script src="core.js"></script>
 
-            }
-            console.log("Trigo: ", coords);
-            return scalePos(coords, 0, radius*2);
-        }
-
-        function scalePos(coords,minRange, maxRange){
-            var min = d3.min(coords, e => e.x)
-            var max = d3.max(coords, e => e.x)
-            console.log("min: ", min, " autre: ", max)
-            var linearScale = d3.scaleLinear()
-              .domain([min, max])
-              .range([minRange, maxRange]);
-
-            coords.map(e => { 
-                e.x = linearScale(e.x)
-                //e.y = linearScale(e.y)
-                return e
-            })
-            console.log("Trigo: ", coords);
-            return coords; 
-        }
-
-        function halfCircleCoords(radius, nbPoints){
-            //y en fonction de y
-            //y = Math.sqrt(radius - Math.pow(x))
-            //x en fonction de y
-            //x = Math.sqrt(- radius - Math.pow(-y))
-
-            var coords = [];
-
-            var step = radius * 2 / (nbPoints - 1);
-            console.log("step: ", step)
-            for (var x = -radius; x < radius ;x += step) {
-
-                y = Math.sqrt(Math.pow(radius, 2) - Math.pow(x, 2))
-                coords.push({x: Math.round(x), y: Math.round(y) - radius});
-            }
-          
-            coords.push({x: radius, y: -radius});
-            console.log("raw: ", coords)
-            //Todo essayer log scale pour X            
-            var linearScale = d3.scaleLinear()
-              .domain([-radius, radius])
-              .range([0, radius*2]);
-
-            coords.map(e => { 
-                e.x = linearScale(e.x)
-                e.y = linearScale(e.y)
-                return e
-            })
-            return coords;
-        }
-
-        var dataCercle = testingTrigo(300 ,20)
-        
-        //dataCercle = dataCercle.concat(scalePos(testingTrigo(100 ,20), 300, 500))
-
-        //dataCercle = scalePos(dataCercle, 100, 500);
-        var svgCercle = d3.select(".demicercle");
-        //console.log(dataCercle)
-        var pointsCercle = svgCercle.selectAll('rect').data(dataCercle);
-
-        var newPointsCercle = pointsCercle.enter()
-
-        newPointsCercle.append('rect').attr("x", (d, i) => {
-            return d.x
-        }).attr("y", (d, i) => {
-            return -d.y
-        })
-        .attr("height", 10)
-        .attr("width", 10)
-        .attr("fill", "red")
-
-        //960 width
-
-
-        function formatData() {
-            var data = [];
-            for (var i = 0; i < 577; i++) {
-                data.push({id: i, group: "députés", title: "députés" });
-            }
-            
-            for (var i = 577; i < 757; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "administrateurs"
-                });
-            }
-            //console.log(data)
-            for (var i = 757; i < 872; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "administrateurs_adjoints"
-                });
-            }
-            for (var i = 872; i < 1044; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "assistants_direction"
-                });
-            }
-            for (var i = 1044; i < 1453; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires", 
-                    title: "agents" });
-            }
-            for (var i = 1453; i < 1517; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "rédacteurs"
-                });
-            }
-            for (var i = 1517; i < 1573; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "gardiens"
-                });
-            }
-            for (var i = 1573; i < 1600; i++) {
-                data.push({
-                    id: i,
-                    group: "fonctionnaires",
-                    title: "informatique"
-                });
-            }
-            for (var i = 1600; i < 1645; i++) {
-                data.push({
-                    id: i, 
-                    group: "fonctionnaires", 
-                    title: "batiment" 
-                });
-            }
-            for (var i = 1645; i < 1698; i++) {
-                data.push({ 
-                    id: i,
-                    group: "fonctionnaires", 
-                    title: "restauration" 
-                });
-            }
-            for (var i = 1698; i < 1706; i++) {
-                data.push({ 
-                    id: i,
-                    group: "fonctionnaires", 
-                    title: "divers" 
-                });
-            }
-
-            return data;
-        }
-
-        var colorsBinding = {
-        deputies: "red",
-        fonctionnaires: "blue",
-        administrateurs: "orange",
-        administrateurs_adjoints: "purple",
-        assistants_direction: "black",
-        agents: "yellow",
-        rédacteurs: "green",
-        gardiens:"#2c3e50",
-        informatique:"#e74c3c",
-        batiment:"#16a085",
-        restauration:"#2ecc71",
-        divers: "#9b59b6"
-        };
-
-        var params = {
-            svgWidth: 640,
-            svgHeight: 600, 
-            squareWidth: 10,
-            strokeWidth: 2
-        };
-        var data = formatData();
-
-        var svg = d3.select(".squares");
-        var squares = svg.selectAll("rect").data(data, function(d, i) { return d.id; });
-        var newSquares = squares.enter();
-
-        newSquares
-            .append("rect")
-            .attr("x", function(d, i) {
-                return coords(i, params).x;
-            })
-            .attr("y", function(d, i) {
-                return coords(i, params).y;
-            })
-            .attr("height", params.squareWidth)
-            .attr("width", function(d, i) {
-                return params.squareWidth;
-            })
-
-        //TODO: pourquoi newSquares ne marche pas?
-        var deputies = d3.selectAll("rect")
-            .filter(d => d.group == "députés")
-            //.attr("class", "deputies");
-            .attr("fill", colorsBinding.deputies);
-
-        var functionnaires = d3.selectAll("rect")
-            .filter(d => d.group == "fonctionnaires")
-            .attr("fill", colorsBinding.fonctionnaires);
-            //.attr("class", "fonctionnaires");
-
-
-        
-
-        //** Steps & event focus**
-
-        deputies.on("mouseover", function(d, i){
-            document.querySelector('h1').textContent = d.group
-
-            functionnaires.attr("opacity", .25);
-        }).on("mouseout", function(d, i){
-            functionnaires.attr("opacity", 1);
-        })
-
-        functionnaires.on("mouseover", function(d, i){
-
-            document.querySelector('h1').textContent = d.group
-            deputies.attr("opacity", .25);
-        }).on("mouseout", function(d, i){
-
-            deputies.attr("opacity", 1);
-        })
-
-        function focusFonctionnaires(){
-
-            //** Removing deputies **
-            data = data.filter(e => e.group == "fonctionnaires");
-            console.log("deleted data: ", data)
-            var test = d3.selectAll("rect").data(data, function(d, i) { return d.id; });
-            console.log("test: ", test)
-            var squaresToRemove = test.exit();
-
-            squaresToRemove
-                .transition()
-                .duration(1000)
-                //.delay(5000)
-                .attr('width', 0)
-                .remove();
-
-            functionnaires
-            .transition()
-            .duration(1000)
-            .delay(1000)
-            .attr("x", function(d, i) {
-                return coords(i, params).x;
-            })
-            .attr("y", function(d, i) {
-                return coords(i, params).y;
-            })
-
-            functionnaires.each(function(d, i){
-                d3.select(this).classed(d.title, true)  
-            })
-
-            functionnaires.on("mouseover", function(d, i){
-                
-                //selection des title non focus
-                deputies.attr("opacity", .25);
-                functionnaires.attr("opacity", .25);
-
-                d3.selectAll("." + d.title).attr("opacity", 1);
-                document.querySelector('h1').textContent = d.title
-
-
-            }).on("mouseout", function(d, i){
-
-                deputies.attr("opacity", 1);
-            })
-
-        }
-
-        // ** Utilities **
-        function coords(squareCounter, params) {
-            var nb = Math.floor(params.svgWidth / params.squareWidth);
-            var y = Math.floor(squareCounter / nb);
-            var x = (squareCounter % nb) * params.squareWidth;
-            var coord = { x: x, y: y * params.squareWidth };
-            return coord;
-        }
-
-    </script>
-
-    <style>
-        svg {
-            /*border: black 3px solid;*/
-        }
-        rect {
-            stroke: white;
-            stroke-width: 2px;            
-        }
-
-        .deputies {
-            fill: red;
-        }
-        
-        .unfocused {
-            opacity: .25;
-/*            transition-duration: 3s;*/
-        }
-
-        .fonctionnaires {
-            fill: blue;
-        }
-        .administrateurs{
-            fill: orange;
-        }
-        .administrateurs_adjoints{
-            fill: purple;
-        }
-        .assistants_direction{
-            fill: black;
-        }
-        .agents{
-            fill: yellow;
-        }
-        .rédacteurs{
-            fill: green;
-        }
-        .gardiens{
-            fill: #2c3e50;
-        }
-        .informatique{
-            fill: #e74c3c;
-        }
-        .batiment{
-            fill: #16a085;
-        }
-        .restauration{
-            fill: #2ecc71;
-        }
-        .divers{
-            fill: #9b59b6;
-        }
-    </style>
 </body>
 </html>
