@@ -185,7 +185,7 @@ var svgCercle = d3
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 750 700")
+    .attr("viewBox", "0 0 " + $("#chart").width() + " 700")
     .classed("svg-content-responsive", true);
 
 var pointsDeputies = svgCercle
@@ -193,6 +193,11 @@ var pointsDeputies = svgCercle
     .attr("class", "deputies")
     .selectAll(".deputie")
     .data(deputies, d => d.id);
+
+var pointsFonctionnaires = svgCercle
+    .append("g")
+    .attr("class", "fonctionnaires");
+
 
 var newPointsDeputies = pointsDeputies.enter();
 
@@ -218,6 +223,8 @@ function stepDefault() {
         .duration(1000)
         .attr("r", 0)
         .remove();
+
+    // console.log(toRemove);
 
     svgCercle
         .selectAll("circle")
@@ -287,35 +294,51 @@ var params = {
 };
 
 function stepOne() {
-    console.log("scroll");
+    // console.log("scroll");
 
-    var pointsFonctionnaires = svgCercle
-        .append("g")
-        .attr("class", "fonctionnaires")
-        .selectAll(".fonctionnaire")
-        .data(fonctionnaires, d => d.id);
+    // pointsFonctionnaires.data(fonctionnaires, d => d.id);
 
-    console.log("pointsFonctionnaires: ", pointsFonctionnaires);
+    // console.log(fonctionnaires, pointsFonctionnaires.enter(), pointsFonctionnaires.merge(pointsFonctionnaires));
 
-    var enterFonctionnaires = pointsFonctionnaires
-        .enter()
-        .append("circle")
-        .attr("class", "fonctionnaire")
+    // console.log("pointsFonctionnaires: ", pointsFonctionnaires);
+
+    svgCercle.selectAll(".fonctionnaire").data(fonctionnaires, d => d.id)
+        .enter().append("circle")
+            .attr("class", "fonctionnaire")
+
+    svgCercle.selectAll(".fonctionnaire")
         .attr("fill", "orange")
         .transition()
         .duration(1000)
         .attr("r", 3)
         .attr("cx", function(d, i) {
-            console.log("ID: ", d.id);
+            // console.log("ID: ", d.id);
             return coords(d.id, params).x + 10;
         })
         .attr("cy", function(d, i) {
             return coords(d.id, params).y + 20 + marginTwenty;
         });
 
+    // var enterFonctionnaires = pointsFonctionnaires
+    //     .data(fonctionnaires, d => d.id)
+    //     .enter()
+    //     .append("circle")
+    //     .attr("class", "fonctionnaire")
+    //     .attr("fill", "orange")
+    //     .transition()
+    //     .duration(1000)
+    //     .attr("r", 3)
+    //     .attr("cx", function(d, i) {
+    //         // console.log("ID: ", d.id);
+    //         return coords(d.id, params).x + 10;
+    //     })
+    //     .attr("cy", function(d, i) {
+    //         return coords(d.id, params).y + 20 + marginTwenty;
+    //     });
+
     svgCercle
         .selectAll(".deputie")
-        .merge(enterFonctionnaires)
+        // .merge(enterFonctionnaires)
         .transition()
         .duration(1000)
         .attr("cx", function(d, i) {
