@@ -50,8 +50,7 @@ function faitQuelquechose(position_scroll) {
         Step != 1
     ) {
         Step = 1;
-        // stepOne();
-        //stepPresident();
+
         stepIntro();
         console.log("Step: ", Step);
     }
@@ -74,7 +73,7 @@ function faitQuelquechose(position_scroll) {
         Step != 3
     ) {
         Step = 3;
-        stepOne();
+        stepBoth();
 
         console.log("Step: ", Step);
     }
@@ -85,7 +84,7 @@ function faitQuelquechose(position_scroll) {
         Step != 4
     ) {
         Step = 4;
-        stepTwo();
+        stepFonctionnaires();
 
         console.log("Step: ", Step);
     }
@@ -96,7 +95,30 @@ function faitQuelquechose(position_scroll) {
         Step != 5
     ) {
         Step = 5;
-        stepThree();
+        stepFoncsGeneraux();
+
+        console.log("Step: ", Step);
+    }
+
+    if (
+        position_scroll > stepHeight * 16.5 &&
+        position_scroll < stepHeight * 19.5 &&
+        Step != 6
+    ) {
+        Step = 6;
+        stepFoncsSpe();
+
+        console.log("Step: ", Step);
+    }
+
+    if (
+        position_scroll > stepHeight * 19.5 &&
+        position_scroll < stepHeight * 22.5 &&
+        Step != 7
+    ) {
+        Step = 8;
+
+        stepFinal();
 
         console.log("Step: ", Step);
     }
@@ -188,18 +210,16 @@ var svgCercle = d3
     .attr("viewBox", "0 0 " + $("#chart").width() + " 700")
     .classed("svg-content-responsive", true);
 
-var pointsDeputies = svgCercle
-    .append("g")
-    .attr("class", "deputies")
-    .selectAll(".deputie")
-    .data(deputies, d => d.id);
+var pointsDeputies = svgCercle.append("g").attr("class", "deputies");
 
 var pointsFonctionnaires = svgCercle
     .append("g")
     .attr("class", "fonctionnaires");
 
-
-var newPointsDeputies = pointsDeputies.enter();
+var newPointsDeputies = pointsDeputies
+    .selectAll(".deputie")
+    .data(deputies, d => d.id)
+    .enter();
 
 newPointsDeputies
     .append("circle")
@@ -212,7 +232,8 @@ newPointsDeputies
     })
     .attr("r", 3)
     .attr("height", 10)
-    .attr("width", 10);
+    .attr("width", 10)
+    .attr("opacity", 1);
 
 function stepDefault() {
     var toRemove = svgCercle.selectAll("circle").data(deputies, d => d.id);
@@ -223,8 +244,6 @@ function stepDefault() {
         .duration(1000)
         .attr("r", 0)
         .remove();
-
-    // console.log(toRemove);
 
     svgCercle
         .selectAll("circle")
@@ -247,45 +266,49 @@ function stepIntro() {
     svgCercle
         .selectAll("circle")
         .filter(d => d.group == "députés")
-        .attr("fill", defaultParams.introColor)
         .transition()
         .duration(1000)
+        .attr("opacity", 1)
         .attr("fill", defaultParams.baseColor);
 }
 
 function stepPresident() {
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "president")
-        .attr("fill", defaultParams.baseColor)
-        .transition()
-        .duration(1000)
-        .attr("fill", "red");
+    var toRemove = svgCercle.selectAll("circle").data(deputies, d => d.id);
 
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "questeur")
-        .attr("fill", defaultParams.baseColor)
+    toRemove
+        .exit()
         .transition()
         .duration(1000)
-        .attr("fill", "blue");
+        .attr("r", 0)
+        .remove();
 
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "vice_president")
-        .attr("fill", defaultParams.baseColor)
+    pointsDeputies
+        .selectAll(".deputie")
         .transition()
         .duration(1000)
-        .attr("fill", "green");
-
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "secretaire")
-        .attr("fill", defaultParams.baseColor)
-        .transition()
-        .duration(1000)
-        .attr("fill", "yellow");
+        .attr("cx", (d, i) => {
+            return dataCercle[i].x;
+        })
+        .attr("cy", (d, i) => {
+            return -dataCercle[i].y + 300 + marginTwenty;
+        })
+        .attr("fill", d => {
+            if (d.title == "president") return "red";
+            if (d.title == "questeur") return "blue";
+            if (d.title == "secretaire") return "yellow";
+            if (d.title == "vice_president") return "green";
+            return "blue";
+        })
+        .attr("opacity", (d, i) => {
+            if (d.title == "députés") return 0.2;
+            return 1;
+        })
+        .attr("r", (d, i) => {
+            if (d.title != "députés") return 4;
+            return 3;
+        });
 }
+
 var params = {
     svgWidth: 640,
     svgHeight: 600,
@@ -293,54 +316,33 @@ var params = {
     strokeWidth: 2
 };
 
-function stepOne() {
-    // console.log("scroll");
+function stepBoth() {
+    pointsFonctionnaires
+        .selectAll(".fonctionnaire")
+        .data(fonctionnaires, d => d.id)
+        .enter()
+        .append("circle")
+        .attr("class", "fonctionnaire");
 
-    // pointsFonctionnaires.data(fonctionnaires, d => d.id);
-
-    // console.log(fonctionnaires, pointsFonctionnaires.enter(), pointsFonctionnaires.merge(pointsFonctionnaires));
-
-    // console.log("pointsFonctionnaires: ", pointsFonctionnaires);
-
-    pointsFonctionnaires.selectAll(".fonctionnaire").data(fonctionnaires, d => d.id)
-        .enter().append("circle")
-            .attr("class", "fonctionnaire")
-
-    pointsFonctionnaires.selectAll(".fonctionnaire")
+    pointsFonctionnaires
+        .selectAll(".fonctionnaire")
         .attr("fill", "orange")
         .transition()
         .duration(1000)
         .attr("r", 3)
         .attr("cx", function(d, i) {
-            // console.log("ID: ", d.id);
             return coords(d.id, params).x + 10;
         })
         .attr("cy", function(d, i) {
             return coords(d.id, params).y + 20 + marginTwenty;
         });
 
-    // var enterFonctionnaires = pointsFonctionnaires
-    //     .data(fonctionnaires, d => d.id)
-    //     .enter()
-    //     .append("circle")
-    //     .attr("class", "fonctionnaire")
-    //     .attr("fill", "orange")
-    //     .transition()
-    //     .duration(1000)
-    //     .attr("r", 3)
-    //     .attr("cx", function(d, i) {
-    //         // console.log("ID: ", d.id);
-    //         return coords(d.id, params).x + 10;
-    //     })
-    //     .attr("cy", function(d, i) {
-    //         return coords(d.id, params).y + 20 + marginTwenty;
-    //     });
-
     svgCercle
         .selectAll(".deputie")
-        // .merge(enterFonctionnaires)
         .transition()
         .duration(1000)
+        .attr("r", 3)
+        .attr("opacity", 1)
         .attr("cx", function(d, i) {
             return coords(d.id, params).x + 10;
         })
@@ -349,7 +351,17 @@ function stepOne() {
         });
 }
 
-function stepTwo() {
+function stepFonctionnaires() {
+    console.log("stepFonctionnaires");
+    //on vire les deputée et on fait la separation entre spe et generaux
+}
+
+function stepFoncsGeneraux() {
+    //details des generaux
+}
+
+function stepFoncsSpe() {
+    //details des specials
     svgCercle
         .selectAll("circle")
         .filter(d => d.group == "députés")
@@ -365,7 +377,6 @@ function stepTwo() {
 
     svgCercle
         .selectAll(".fonctionnaire")
-        .attr("fill", "purple")
         .transition()
         .duration(1000)
         .attr("cx", function(d, i) {
@@ -379,7 +390,7 @@ function stepTwo() {
         });
 }
 
-function stepThree() {
+function stepFinal() {
     svgCercle
         .selectAll("circle")
         .filter(d => d.group == "députés")
