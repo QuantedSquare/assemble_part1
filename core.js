@@ -302,11 +302,11 @@ function stepOne() {
 
     // console.log("pointsFonctionnaires: ", pointsFonctionnaires);
 
-    svgCercle.selectAll(".fonctionnaire").data(fonctionnaires, d => d.id)
+    pointsFonctionnaires.selectAll(".fonctionnaire").data(fonctionnaires, d => d.id)
         .enter().append("circle")
             .attr("class", "fonctionnaire")
 
-    svgCercle.selectAll(".fonctionnaire")
+    pointsFonctionnaires.selectAll(".fonctionnaire")
         .attr("fill", "orange")
         .transition()
         .duration(1000)
