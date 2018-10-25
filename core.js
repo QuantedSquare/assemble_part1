@@ -265,7 +265,7 @@ function stepPresident() {
 
     svgCercle
         .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "vice-president")
+        .filter(d => d.group == "députés" && d.title == "vice_president")
         .attr("fill", defaultParams.baseColor)
         .transition()
         .duration(1000)
@@ -273,7 +273,7 @@ function stepPresident() {
 
     svgCercle
         .selectAll("circle")
-        .filter(d => d.group == "députés" && d.title == "secrétaire")
+        .filter(d => d.group == "députés" && d.title == "secretaire")
         .attr("fill", defaultParams.baseColor)
         .transition()
         .duration(1000)
@@ -285,6 +285,7 @@ var params = {
     squareWidth: 10,
     strokeWidth: 2
 };
+
 function stepOne() {
     console.log("scroll");
 
@@ -293,6 +294,8 @@ function stepOne() {
         .attr("class", "fonctionnaires")
         .selectAll(".fonctionnaire")
         .data(fonctionnaires, d => d.id);
+
+    console.log("pointsFonctionnaires: ", pointsFonctionnaires);
 
     var enterFonctionnaires = pointsFonctionnaires
         .enter()
@@ -303,6 +306,7 @@ function stepOne() {
         .duration(1000)
         .attr("r", 3)
         .attr("cx", function(d, i) {
+            console.log("ID: ", d.id);
             return coords(d.id, params).x + 10;
         })
         .attr("cy", function(d, i) {
@@ -324,13 +328,30 @@ function stepOne() {
 
 function stepTwo() {
     svgCercle
+        .selectAll("circle")
+        .filter(d => d.group == "députés")
+        .transition()
+        .duration(1000)
+        .attr("r", 3)
+        .attr("cx", function(d, i) {
+            return coords(d.id, params).x + 10;
+        })
+        .attr("cy", function(d, i) {
+            return coords(d.id, params).y + 20 + marginTwenty;
+        });
+
+    svgCercle
         .selectAll(".fonctionnaire")
         .attr("fill", "purple")
         .transition()
         .duration(1000)
+        .attr("cx", function(d, i) {
+            return coords(d.id, params).x + 10;
+        })
+        .attr("cy", function(d, i) {
+            return coords(d.id, params).y + 20 + marginTwenty;
+        })
         .attr("fill", (d, i) => {
-            //console.log("d fill: ", d);
-
             return defaultParams[d.title + "Color"];
         });
 }
