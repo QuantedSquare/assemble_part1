@@ -188,7 +188,7 @@ function initialDraw() {
 initialDraw();
 
 // Generic Draw
-function drawPoints (drawInArc, fonctionnairesMargin) {
+function drawPoints (drawInArc, fonctionnairesMargin, bothGroup) {
     var circles = svgCercle.selectAll("circle").data(data).transition().duration(1000)
         .attr("r", d => d.higlighted ? 4 : 3)
         .attr("opacity", d => d.opacity)
@@ -200,7 +200,7 @@ function drawPoints (drawInArc, fonctionnairesMargin) {
                 return dataCercle[i].x;
             })
             .attr("cy", (d, i) => {
-                return -dataCercle[i].y + 300 + marginTwenty;
+                return -dataCercle[i].y + 300 + (bothGroup ? 0 : marginTwenty);
             });
     } else {
         circles.filter(d => d.group == "députés")
@@ -208,7 +208,7 @@ function drawPoints (drawInArc, fonctionnairesMargin) {
                 return coords(d.id, params).x + 10;
             })
             .attr("cy", function(d, i) {
-                return coords(d.id, params).y + 10 + marginTwenty;
+                return coords(d.id, params).y + 10 + (bothGroup ? 0 : marginTwenty);
             });
     }
 
@@ -216,14 +216,20 @@ function drawPoints (drawInArc, fonctionnairesMargin) {
     if(fonctionnairesMargin) {
         circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
             .attr("cy", function(d, i) {
-                return coords(d.id, params).y + 20 + marginTwenty + 20;
+                return coords(d.id, params).y + (bothGroup ? 100 : 20) + marginTwenty + 20;
             });
     } else {
         circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
             .attr("cy", function(d, i) {
-                return coords(d.id, params).y + 20 + marginTwenty;
+                return coords(d.id, params).y + (bothGroup ? 100 : 20) + marginTwenty;
             });
     }
+
+    // Moove general Fonctionnaire when both Group
+    circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) >= 0)
+        .attr("cy", function(d, i) {
+            return coords(d.id, params).y + (bothGroup ? 100 : 20) + marginTwenty;
+        });
 
     return circles;
 }
@@ -327,7 +333,7 @@ function stepFonctionnaires() {
 function stepFoncsGeneraux() {
     data.forEach(d => {
         if(d.group == "fonctionnaires") {
-            d.higlighted = false;
+            d.higlighted = generalTitles.indexOf(d.title) >= 0;
             d.col = generalTitles.indexOf(d.title) >= 0 ? defaultParams[d.title + "Color"] : "grey";
             d.opacity = 1;
         }
@@ -344,63 +350,39 @@ function stepFoncsGeneraux() {
 }
 
 function stepFoncsSpe() {
-    //details des specials
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés")
-        .transition()
-        .duration(1000)
-        .attr("r", 3)
-        .attr("cx", function(d, i) {
-            return coords(d.id, params).x + 10;
-        })
-        .attr("cy", function(d, i) {
-            return coords(d.id, params).y + 20 + marginTwenty;
-        });
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = generalTitles.indexOf(d.title) < 0;
+            d.col = generalTitles.indexOf(d.title) < 0 ? defaultParams[d.title + "Color"] : "grey";
+            d.opacity = 1;
+        }
 
-    svgCercle
-        .selectAll(".fonctionnaire")
-        .transition()
-        .duration(1000)
-        .attr("cx", function(d, i) {
-            return coords(d.id, params).x + 10;
-        })
-        .attr("cy", function(d, i) {
-            return coords(d.id, params).y + 20 + marginTwenty;
-        })
-        .attr("fill", (d, i) => {
-            return defaultParams[d.title + "Color"];
-        });
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "blue";
+            d.opacity = 0;
+        }
+    });
+
+    drawPoints(false, true);
 }
 
 function stepFinal() {
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés")
-        .transition()
-        .duration(1000)
-        .attr("cx", (d, i) => {
-            return dataCercle[i].x;
-        })
-        .attr("cy", (d, i) => {
-            return -dataCercle[i].y + 300;
-        })
-        .attr("r", 3)
-        .attr("height", 10)
-        .attr("width", 10)
-        .attr("fill", defaultParams.introColor);
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = defaultParams[d.title + "Color"]
+            d.opacity = 1;
+        }
 
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "fonctionnaires")
-        .transition()
-        .duration(1000)
-        .attr("cx", function(d, i) {
-            return coords(d.id, params).x + 10;
-        })
-        .attr("cy", function(d, i) {
-            return coords(d.id, params).y + 100 + marginTwenty;
-        });
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = deputiesColorMap[d.title];;
+            d.opacity = 1;
+        }
+    });
+
+    drawPoints(true, false, true);
 }
 
 var steps = [
@@ -419,7 +401,12 @@ var currentStep = 0;
 var encorNodes = [
     d3.select("#stepDefault").node(),
     d3.select("#stepIntro").node(),
-    d3.select("#stepPresident").node()
+    d3.select("#stepPresident").node(),
+    d3.select("#stepBoth").node(),
+    d3.select("#stepFonctionnaires").node(),
+    d3.select("#stepFoncsGeneraux").node(),
+    d3.select("#stepFoncsSpe").node(),
+    d3.select("#stepFinal").node(),
 ]
 
 function faitQuelquechose(positionScroll) {
