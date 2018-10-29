@@ -30,99 +30,7 @@ var defaultParams = {
 var derniere_position_de_scroll_connue = 0;
 var ticking = false;
 
-var Step = 0;
-
 var marginTwenty = window.innerHeight * 0.25;
-
-function faitQuelquechose(position_scroll) {
-    var stepHeight = window.innerHeight + defaultParams.triggerStepHeightPad;
-    stepHeight -= 0.5 * stepHeight;
-    //console.log("position_scroll: ", position_scroll);
-    if (position_scroll < stepHeight && Step != 0) {
-        Step = 0;
-        stepDefault();
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight &&
-        position_scroll < stepHeight * 2 &&
-        Step != 1
-    ) {
-        Step = 1;
-
-        stepIntro();
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 3.5 &&
-        position_scroll < stepHeight * 6.5 &&
-        Step != 2
-    ) {
-        Step = 2;
-
-        stepPresident();
-
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 6.5 &&
-        position_scroll < stepHeight * 10.5 &&
-        Step != 3
-    ) {
-        Step = 3;
-        stepBoth();
-
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 10.5 &&
-        position_scroll < stepHeight * 13.5 &&
-        Step != 4
-    ) {
-        Step = 4;
-        stepFonctionnaires();
-
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 13.5 &&
-        position_scroll < stepHeight * 16.5 &&
-        Step != 5
-    ) {
-        Step = 5;
-        stepFoncsGeneraux();
-
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 16.5 &&
-        position_scroll < stepHeight * 19.5 &&
-        Step != 6
-    ) {
-        Step = 6;
-        stepFoncsSpe();
-
-        console.log("Step: ", Step);
-    }
-
-    if (
-        position_scroll > stepHeight * 19.5 &&
-        position_scroll < stepHeight * 22.5 &&
-        Step != 7
-    ) {
-        Step = 8;
-
-        stepFinal();
-
-        console.log("Step: ", Step);
-    }
-}
 
 window.addEventListener("scroll", function(e) {
     derniere_position_de_scroll_connue = window.scrollY;
@@ -418,6 +326,32 @@ function stepFinal() {
         .attr("cy", function(d, i) {
             return coords(d.id, params).y + 100 + marginTwenty;
         });
+}
+
+var steps = [
+    stepDefault,            // Intro en bleu
+    stepIntro,              // Texte deputés --> Changement de couleur des députés
+    stepPresident,          // Higlights des députés spéciaux
+    stepBoth,               // Entré des fonctionnaires.
+    stepFonctionnaires,     // on vire les deputée et on fait la separation entre spe et generaux
+    stepFoncsGeneraux,      // Higlights des fonctionnaires generaux
+    stepFoncsSpe,           // Details des fonctionnaires spécialisés
+    stepFinal,              // Viz total avec toutes les couleurs
+];
+
+var currentStep = 0;
+
+function faitQuelquechose(positionScroll) {
+    var stepHeight = window.innerHeight + defaultParams.triggerStepHeightPad;
+    
+
+    var scrollStep = Math.round(positionScroll/stepHeight);
+
+    if(scrollStep != currentStep && steps[scrollStep]) {
+        console.log("Rendering step:", scrollStep);
+        currentStep = scrollStep
+        steps[scrollStep]();
+    }
 }
 
 // ** Utilities **
