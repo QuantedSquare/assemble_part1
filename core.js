@@ -27,20 +27,21 @@ var defaultParams = {
     triggerStepHeightPad: 0
 };
 
-var derniere_position_de_scroll_connue = 0;
+// var derniere_position_de_scroll_connue = 0;
 var ticking = false;
 
 var marginTwenty = window.innerHeight * 0.25;
 
+// Work on every navigators ?
 window.addEventListener("scroll", function(e) {
-    derniere_position_de_scroll_connue = window.scrollY;
-    if (!ticking) {
-        window.requestAnimationFrame(function() {
-            faitQuelquechose(derniere_position_de_scroll_connue);
-            ticking = false;
-        });
-    }
-    ticking = true;
+    // derniere_position_de_scroll_connue = window.scrollY;
+    // if (!ticking) {
+        // window.requestAnimationFrame(function() {
+            faitQuelquechose(window.scrollY);
+            // ticking = false;
+        // });
+    // }
+    // ticking = true;
 });
 
 function drawBureau(nbLines, nbByLine, gapX, gapY) {
@@ -109,6 +110,13 @@ var dataCercle = drawAs();
 var deputies = data.filter(e => e.group == "députés");
 var fonctionnaires = data.filter(e => e.group == "fonctionnaires");
 
+var params = {
+    svgWidth: 670,
+    svgHeight: 600,
+    squareWidth: 10,
+    strokeWidth: 2
+};
+
 var svgCercle = d3
     .select("#chart")
     .append("div")
@@ -129,35 +137,40 @@ var newPointsDeputies = pointsDeputies
     .data(deputies, d => d.id)
     .enter();
 
-newPointsDeputies
-    .append("circle")
-    .classed("deputie", true)
-    .attr("cx", (d, i) => {
-        return dataCercle[i].x;
-    })
-    .attr("cy", (d, i) => {
-        return -dataCercle[i].y + 300 + marginTwenty;
-    })
-    .attr("r", 3)
-    .attr("height", 10)
-    .attr("width", 10)
-    .attr("opacity", 1);
+const generalTitles = [
+    "administrateurs",
+    "administrateurs_adjoints",
+    "assistants_direction",
+    "agents"
+];
 
-function stepDefault() {
-    var toRemove = svgCercle.selectAll("circle").data(deputies, d => d.id);
+var deputiesColorMap = {
+    députés: "blue",
+    president: "red",
+    questeur: "purple",
+    secretaire: "yellow",
+    vice_president: "green"
+};
 
-    toRemove
-        .exit()
-        .transition()
-        .duration(1000)
-        .attr("r", 0)
-        .remove();
-
+function initialDraw() {
     svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés")
-        .transition()
-        .duration(1000)
+        .selectAll(".fonctionnaire")
+        .data(fonctionnaires, d => d.id)
+        .enter()
+        .append("circle")
+        .attr("class", "fonctionnaire")
+        .attr("r", 3)
+        .attr("fill", "orange")
+        .attr("cx", function(d, i) {
+            return coords(d.id, params).x + 10
+        })
+        .attr("cy", function(d, i) {
+            return coords(d.id, params).y + 20 + marginTwenty;
+        });
+
+    newPointsDeputies
+        .append("circle")
+        .attr("class", "deputie")
         .attr("cx", (d, i) => {
             return dataCercle[i].x;
         })
@@ -167,105 +180,167 @@ function stepDefault() {
         .attr("r", 3)
         .attr("height", 10)
         .attr("width", 10)
-        .attr("fill", defaultParams.introColor);
+        .attr("opacity", 0);
+
+    stepDefault();
+}
+
+initialDraw();
+
+// Generic Draw
+function drawPoints (drawInArc, fonctionnairesMargin) {
+    var circles = svgCercle.selectAll("circle").data(data).transition().duration(1000)
+        .attr("r", d => d.higlighted ? 4 : 3)
+        .attr("opacity", d => d.opacity)
+        .attr("fill", d => d.col);
+
+    if(drawInArc) {
+        circles.filter(d => d.group == "députés")
+            .attr("cx", (d, i) => {
+                return dataCercle[i].x;
+            })
+            .attr("cy", (d, i) => {
+                return -dataCercle[i].y + 300 + marginTwenty;
+            });
+    } else {
+        circles.filter(d => d.group == "députés")
+            .attr("cx", function(d, i) {
+                return coords(d.id, params).x + 10;
+            })
+            .attr("cy", function(d, i) {
+                return coords(d.id, params).y + 10 + marginTwenty;
+            });
+    }
+
+    // Add margin on non general. Data order important.
+    if(fonctionnairesMargin) {
+        circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
+            .attr("cy", function(d, i) {
+                return coords(d.id, params).y + 20 + marginTwenty + 20;
+            });
+    } else {
+        circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
+            .attr("cy", function(d, i) {
+                return coords(d.id, params).y + 20 + marginTwenty;
+            });
+    }
+
+    return circles;
+}
+
+function stepDefault() {
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = "orange"
+            d.opacity = 0;
+        }
+
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "black";
+            d.opacity = 1;
+        }
+    });
+
+    drawPoints(true);
 }
 
 function stepIntro() {
-    svgCercle
-        .selectAll("circle")
-        .filter(d => d.group == "députés")
-        .transition()
-        .duration(1000)
-        .attr("opacity", 1)
-        .attr("fill", defaultParams.baseColor);
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = "orange"
+            d.opacity = 0;
+        }
+
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "blue";
+            d.opacity = 1;
+        }
+    });
+
+    drawPoints(true);
 }
 
 function stepPresident() {
-    var toRemove = svgCercle.selectAll("circle").data(deputies, d => d.id);
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = "orange"
+            d.opacity = 0;
+        }
 
-    toRemove
-        .exit()
-        .transition()
-        .duration(1000)
-        .attr("r", 0)
-        .remove();
+        if(d.group == "députés") {
+            d.higlighted = d.title != "députés";
+            d.col = deputiesColorMap[d.title];
+            d.opacity = d.title != "députés" ? 1 : 0.2;
+        }
+    });
 
-    pointsDeputies
-        .selectAll(".deputie")
-        .transition()
-        .duration(1000)
-        .attr("cx", (d, i) => {
-            return dataCercle[i].x;
-        })
-        .attr("cy", (d, i) => {
-            return -dataCercle[i].y + 300 + marginTwenty;
-        })
-        .attr("fill", d => {
-            if (d.title == "president") return "red";
-            if (d.title == "questeur") return "blue";
-            if (d.title == "secretaire") return "yellow";
-            if (d.title == "vice_president") return "green";
-            return "blue";
-        })
-        .attr("opacity", (d, i) => {
-            if (d.title == "députés") return 0.2;
-            return 1;
-        })
-        .attr("r", (d, i) => {
-            if (d.title != "députés") return 4;
-            return 3;
-        });
+    drawPoints(true);
 }
 
-var params = {
-    svgWidth: 640,
-    svgHeight: 600,
-    squareWidth: 10,
-    strokeWidth: 2
-};
-
 function stepBoth() {
-    pointsFonctionnaires
-        .selectAll(".fonctionnaire")
-        .data(fonctionnaires, d => d.id)
-        .enter()
-        .append("circle")
-        .attr("class", "fonctionnaire");
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = "orange"
+            d.opacity = 1;
+        }
 
-    pointsFonctionnaires
-        .selectAll(".fonctionnaire")
-        .attr("fill", "orange")
-        .transition()
-        .duration(1000)
-        .attr("r", 3)
-        .attr("cx", function(d, i) {
-            return coords(d.id, params).x + 10;
-        })
-        .attr("cy", function(d, i) {
-            return coords(d.id, params).y + 20 + marginTwenty;
-        });
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "blue";
+            d.opacity = 1;
+        }
+    });
 
-    svgCercle
-        .selectAll(".deputie")
-        .transition()
-        .duration(1000)
-        .attr("r", 3)
-        .attr("opacity", 1)
-        .attr("cx", function(d, i) {
-            return coords(d.id, params).x + 10;
-        })
-        .attr("cy", function(d, i) {
-            return coords(d.id, params).y + 10 + marginTwenty;
-        });
+    drawPoints(false);
 }
 
 function stepFonctionnaires() {
-    console.log("stepFonctionnaires");
-    //on vire les deputée et on fait la separation entre spe et generaux
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = generalTitles.indexOf(d.title) >= 0 ? "orange" : "grey";
+            d.opacity = 1;
+        }
+
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "blue";
+            d.opacity = 0;
+        }
+    });
+
+    // Commented code can replace the second argument set to true.
+    // La selection ici est déjà une transition de 1 seconde.
+    drawPoints(false, true)
+        // .filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
+        //     .attr("cy", function(d, i) {
+        //         return coords(d.id, params).y + 20 + marginTwenty + 20;
+        //     });
 }
 
 function stepFoncsGeneraux() {
-    //details des generaux
+    data.forEach(d => {
+        if(d.group == "fonctionnaires") {
+            d.higlighted = false;
+            d.col = generalTitles.indexOf(d.title) >= 0 ? defaultParams[d.title + "Color"] : "grey";
+            d.opacity = 1;
+        }
+
+        if(d.group == "députés") {
+            d.higlighted = false;
+            d.col = "blue";
+            d.opacity = 0;
+        }
+    });
+
+    drawPoints(false, true);
+        
 }
 
 function stepFoncsSpe() {
@@ -341,11 +416,29 @@ var steps = [
 
 var currentStep = 0;
 
-function faitQuelquechose(positionScroll) {
-    var stepHeight = window.innerHeight + defaultParams.triggerStepHeightPad;
-    
+var encorNodes = [
+    d3.select("#stepDefault").node(),
+    d3.select("#stepIntro").node(),
+    d3.select("#stepPresident").node()
+]
 
-    var scrollStep = Math.round(positionScroll/stepHeight);
+function faitQuelquechose(positionScroll) {
+    var screenCenter = window.innerHeight/2;
+
+    var scrollStep = encorNodes.reduce((nearestEncor, encorNode, encorIndex) => {
+        var encorPos = encorNode.getBoundingClientRect(),
+            encorY = encorPos.top;
+
+        var dist = screenCenter - encorY;
+        if(dist < 0) dist *= -1;
+
+        // console.log(encorIndex, dist);
+
+        if(dist < nearestEncor.dist) {
+            return {dist: dist, step: encorIndex}
+        } else return nearestEncor;
+    }, {dist: 10000, step: 0}).step;
+
 
     if(scrollStep != currentStep && steps[scrollStep]) {
         console.log("Rendering step:", scrollStep);
