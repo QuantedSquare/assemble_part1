@@ -1,5 +1,5 @@
 var defaultParams = {
-    introColor: "black",
+    introColor: "#2C3A47",
     baseColor: "blue",
     deputiesColor: "",
 
@@ -36,10 +36,10 @@ var marginTwenty = window.innerHeight * 0.25;
 window.addEventListener("scroll", function(e) {
     // derniere_position_de_scroll_connue = window.scrollY;
     // if (!ticking) {
-        // window.requestAnimationFrame(function() {
-            faitQuelquechose(window.scrollY);
-            // ticking = false;
-        // });
+    // window.requestAnimationFrame(function() {
+    faitQuelquechose(window.scrollY);
+    // ticking = false;
+    // });
     // }
     // ticking = true;
 });
@@ -146,10 +146,10 @@ const generalTitles = [
 
 var deputiesColorMap = {
     députés: "blue",
-    president: "red",
-    questeur: "purple",
-    secretaire: "yellow",
-    vice_president: "green"
+    president: "#EAB543",
+    questeur: "#25CCF7",
+    secretaire: "#FD7272",
+    vice_president: "#58B19F"
 };
 
 function initialDraw() {
@@ -188,13 +188,13 @@ function initialDraw() {
 initialDraw();
 
 // Generic Draw
-function drawPoints (drawInArc, fonctionnairesMargin, bothGroup) {
+function drawPoints(drawInArc, fonctionnairesMargin, bothGroup) {
     var circles = svgCercle.selectAll("circle").data(data).transition().duration(1000)
         .attr("r", d => d.higlighted ? 4 : 3)
         .attr("opacity", d => d.opacity)
         .attr("fill", d => d.col);
 
-    if(drawInArc) {
+    if (drawInArc) {
         circles.filter(d => d.group == "députés")
             .attr("cx", (d, i) => {
                 return dataCercle[i].x;
@@ -213,7 +213,7 @@ function drawPoints (drawInArc, fonctionnairesMargin, bothGroup) {
     }
 
     // Add margin on non general. Data order important.
-    if(fonctionnairesMargin) {
+    if (fonctionnairesMargin) {
         circles.filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
             .attr("cy", function(d, i) {
                 return coords(d.id, params).y + (bothGroup ? 100 : 20) + marginTwenty + 20;
@@ -236,13 +236,13 @@ function drawPoints (drawInArc, fonctionnairesMargin, bothGroup) {
 
 function stepDefault() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = "orange"
             d.opacity = 0;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "black";
             d.opacity = 1;
@@ -254,13 +254,13 @@ function stepDefault() {
 
 function stepIntro() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = "orange"
             d.opacity = 0;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "blue";
             d.opacity = 1;
@@ -272,13 +272,13 @@ function stepIntro() {
 
 function stepPresident() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = "orange"
             d.opacity = 0;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = d.title != "députés";
             d.col = deputiesColorMap[d.title];
             d.opacity = d.title != "députés" ? 1 : 0.2;
@@ -290,13 +290,13 @@ function stepPresident() {
 
 function stepBoth() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = "orange"
             d.opacity = 1;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "blue";
             d.opacity = 1;
@@ -308,13 +308,13 @@ function stepBoth() {
 
 function stepFonctionnaires() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = generalTitles.indexOf(d.title) >= 0 ? "orange" : "grey";
             d.opacity = 1;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "blue";
             d.opacity = 0;
@@ -324,21 +324,21 @@ function stepFonctionnaires() {
     // Commented code can replace the second argument set to true.
     // La selection ici est déjà une transition de 1 seconde.
     drawPoints(false, true)
-        // .filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
-        //     .attr("cy", function(d, i) {
-        //         return coords(d.id, params).y + 20 + marginTwenty + 20;
-        //     });
+    // .filter(d => d.group == "fonctionnaires" && generalTitles.indexOf(d.title) < 0)
+    //     .attr("cy", function(d, i) {
+    //         return coords(d.id, params).y + 20 + marginTwenty + 20;
+    //     });
 }
 
 function stepFoncsGeneraux() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = generalTitles.indexOf(d.title) >= 0;
             d.col = generalTitles.indexOf(d.title) >= 0 ? defaultParams[d.title + "Color"] : "grey";
             d.opacity = 1;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "blue";
             d.opacity = 0;
@@ -346,18 +346,18 @@ function stepFoncsGeneraux() {
     });
 
     drawPoints(false, true);
-        
+
 }
 
 function stepFoncsSpe() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = generalTitles.indexOf(d.title) < 0;
             d.col = generalTitles.indexOf(d.title) < 0 ? defaultParams[d.title + "Color"] : "grey";
             d.opacity = 1;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = "blue";
             d.opacity = 0;
@@ -369,13 +369,13 @@ function stepFoncsSpe() {
 
 function stepFinal() {
     data.forEach(d => {
-        if(d.group == "fonctionnaires") {
+        if (d.group == "fonctionnaires") {
             d.higlighted = false;
             d.col = defaultParams[d.title + "Color"]
             d.opacity = 1;
         }
 
-        if(d.group == "députés") {
+        if (d.group == "députés") {
             d.higlighted = false;
             d.col = deputiesColorMap[d.title];;
             d.opacity = 1;
@@ -386,14 +386,14 @@ function stepFinal() {
 }
 
 var steps = [
-    stepDefault,            // Intro en bleu
-    stepIntro,              // Texte deputés --> Changement de couleur des députés
-    stepPresident,          // Higlights des députés spéciaux
-    stepBoth,               // Entré des fonctionnaires.
-    stepFonctionnaires,     // on vire les deputée et on fait la separation entre spe et generaux
-    stepFoncsGeneraux,      // Higlights des fonctionnaires generaux
-    stepFoncsSpe,           // Details des fonctionnaires spécialisés
-    stepFinal,              // Viz total avec toutes les couleurs
+    stepDefault, // Intro en bleu
+    stepIntro, // Texte deputés --> Changement de couleur des députés
+    stepPresident, // Higlights des députés spéciaux
+    stepBoth, // Entré des fonctionnaires.
+    stepFonctionnaires, // on vire les deputée et on fait la separation entre spe et generaux
+    stepFoncsGeneraux, // Higlights des fonctionnaires generaux
+    stepFoncsSpe, // Details des fonctionnaires spécialisés
+    stepFinal, // Viz total avec toutes les couleurs
 ];
 
 var currentStep = 0;
@@ -410,24 +410,24 @@ var encorNodes = [
 ]
 
 function faitQuelquechose(positionScroll) {
-    var screenCenter = window.innerHeight/2;
+    var screenCenter = window.innerHeight / 2;
 
     var scrollStep = encorNodes.reduce((nearestEncor, encorNode, encorIndex) => {
         var encorPos = encorNode.getBoundingClientRect(),
             encorY = encorPos.top;
 
         var dist = screenCenter - encorY;
-        if(dist < 0) dist *= -1;
+        if (dist < 0) dist *= -1;
 
         // console.log(encorIndex, dist);
 
-        if(dist < nearestEncor.dist) {
-            return {dist: dist, step: encorIndex}
+        if (dist < nearestEncor.dist) {
+            return { dist: dist, step: encorIndex }
         } else return nearestEncor;
-    }, {dist: 10000, step: 0}).step;
+    }, { dist: 10000, step: 0 }).step;
 
 
-    if(scrollStep != currentStep && steps[scrollStep]) {
+    if (scrollStep != currentStep && steps[scrollStep]) {
         console.log("Rendering step:", scrollStep);
         currentStep = scrollStep
         steps[scrollStep]();
