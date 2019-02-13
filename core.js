@@ -13,16 +13,16 @@ var defaultParams = {
     generalFoncsColor: "",
     specialFoncsColor: "",
 
-    administrateursColor: "#1abc9c",
-    administrateurs_adjointsColor: "#f1c40f",
-    assistants_directionColor: "#3498db",
-    agentsColor: "#e74c3c",
-    redacteursColor: "#9b59b6",
-    gardiensColor: "#bdc3c7",
-    informatiqueColor: "#34495e",
-    batimentColor: "#16a085",
-    restaurationColor: "#f1c40f",
-    diversColor: "#e67e22",
+    administrateursColor: "#FEA47F",
+    administrateurs_adjointsColor: "#1B9CFC",
+    assistants_directionColor: "#55E6C1",
+    agentsColor: "#D6A2E8",
+    redacteursColor: "#F97F51",
+    gardiensColor: "#B33771",
+    informatiqueColor: "#3B3B98",
+    batimentColor: "#9AECDB",
+    restaurationColor: "#6D214F",
+    diversColor: "#182C61",
 
     triggerStepHeightPad: 0
 };
@@ -145,7 +145,7 @@ const generalTitles = [
 ];
 
 var deputiesColorMap = {
-    députés: "blue",
+    députés: "#2953f3",
     president: "#EAB543",
     questeur: "#25CCF7",
     secretaire: "#FD7272",
@@ -160,7 +160,7 @@ function initialDraw() {
         .append("circle")
         .attr("class", "fonctionnaire")
         .attr("r", 3)
-        .attr("fill", "orange")
+        .attr("fill", "#FC427B")
         .attr("cx", function(d, i) {
             return coords(d.id, params).x + 10
         })
@@ -238,7 +238,6 @@ function stepDefault() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = false;
-            d.col = "orange"
             d.opacity = 0;
         }
 
@@ -256,13 +255,13 @@ function stepIntro() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = false;
-            d.col = "orange"
+            d.col = "#FC427B"
             d.opacity = 0;
         }
 
         if (d.group == "députés") {
             d.higlighted = false;
-            d.col = "blue";
+            d.col = "#2953f3";
             d.opacity = 1;
         }
     });
@@ -274,7 +273,7 @@ function stepPresident() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = false;
-            d.col = "orange"
+            d.col = "#FC427B"
             d.opacity = 0;
         }
 
@@ -292,13 +291,13 @@ function stepBoth() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = false;
-            d.col = "orange"
+            d.col = "#FC427B"
             d.opacity = 1;
         }
 
         if (d.group == "députés") {
             d.higlighted = false;
-            d.col = "blue";
+            d.col = "#2953f3";
             d.opacity = 1;
         }
     });
@@ -310,7 +309,7 @@ function stepFonctionnaires() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = false;
-            d.col = generalTitles.indexOf(d.title) >= 0 ? "orange" : "grey";
+            d.col = generalTitles.indexOf(d.title) >= 0 ? "#FC427B" : "#58B19F";
             d.opacity = 1;
         }
 
@@ -334,7 +333,7 @@ function stepFoncsGeneraux() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = generalTitles.indexOf(d.title) >= 0;
-            d.col = generalTitles.indexOf(d.title) >= 0 ? defaultParams[d.title + "Color"] : "grey";
+            d.col = generalTitles.indexOf(d.title) >= 0 ? defaultParams[d.title + "Color"] : "#ecf0f1";
             d.opacity = 1;
         }
 
@@ -353,7 +352,7 @@ function stepFoncsSpe() {
     data.forEach(d => {
         if (d.group == "fonctionnaires") {
             d.higlighted = generalTitles.indexOf(d.title) < 0;
-            d.col = generalTitles.indexOf(d.title) < 0 ? defaultParams[d.title + "Color"] : "grey";
+            d.col = generalTitles.indexOf(d.title) < 0 ? defaultParams[d.title + "Color"] : "#ecf0f1";
             d.opacity = 1;
         }
 
