@@ -145,7 +145,7 @@ const generalTitles = [
 ];
 
 var deputiesColorMap = {
-    députés: "#2953f3",
+    députés: "rgba(255, 18, 120, 1)",
     president: "#EAB543",
     questeur: "#25CCF7",
     secretaire: "#FD7272",
@@ -261,7 +261,7 @@ function stepIntro() {
 
         if (d.group == "députés") {
             d.higlighted = false;
-            d.col = "#2953f3";
+            d.col = "rgba(255, 18, 120, 1)";
             d.opacity = 1;
         }
     });

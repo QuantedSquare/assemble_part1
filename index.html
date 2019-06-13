@@ -1,30 +1,52 @@
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="./images/favicon_png/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./images/favicon_png/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="./images/favicon_png/57x57.png" sizes="57x57">
+    <link rel="icon" type="image/png" href="./images/favicon_png/72x72.png" sizes="72x72">
+    <link rel="icon" type="image/png" href="./images/favicon_png/114x114.png" sizes="114x114">
+    <link rel="icon" type="image/png" href="./images/favicon_png/144x144.png" sizes="144x144">
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bulma-tooltip.css">
     <link rel="stylesheet" type="text/css" href="css/fullpage.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/af7fd2346c.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127627259-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127627259-3');
+    </script>
 </head>
 
 <body style="height: 2000px">
     <div class="mainSplashBg"></div>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-          quanted Square
-        </a>
+            <a class="navbar-item" href="https://quantedsquare.com/">
+                <img src="./images/logo_couleur_blanc.png">
+            </a>
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
     </nav>
+    <!--     <img src="./images/logo_couleur_blancr.png"> -->
     <div class="container">
         <div style="position: relative;">
             <div class="landing">
                 <h1 id="stepDefault" class="title bigTitle ">REGARD <br />SUR <br /> L' ASSEMBLEE</h1>
-                <p style="font-size: 0.3em;font-family: " Archivo Black", sans-serif;"> Sa composition, son fonctionnement et son financement reste obscur pour beaucoup.
+                <p style="font-size: 0.3em;"> Sa composition, son fonctionnement et son financement reste obscur pour beaucoup.
                     <br><br>
                     <b style="border-bottom:solid 1px white">Partie 1</b>
                     <br>
@@ -49,11 +71,12 @@
             </div>
             <div class="column" style="margin-top:130vh">
                 <div>
-                    <h2 id="stepIntro" class="title"><span style="color: #2953f3">577</span> députées</h2>
+                    <h2 id="stepIntro" class="title"><span style="color: rgba(255, 18, 120, 1);">577</span> députées</h2>
                     <p>Élus tous les 5 ans, ils siègent pour <b>voter les lois</b> et de <b>controler l'action</b> du gouvernement.
                         <br />
                         <br />
-                        Parmis eux, certains ont un statut et des missions différentes...</p>
+                        <!-- Parmis eux, certains ont un statut et des missions différentes... -->
+                    </p>
                 </div>
             </div>
         </div>
@@ -70,14 +93,14 @@
                     <p class="textPara">
                         <span style="color: #58B19F"><span class="firstLetter">6</span> <b>vice-présidents</b></span> sont disponible pour remplacé le président si ce dernier n'est pas disponible.
                     </p>
-                    <p class="textPara"><span style="color: #25CCF7"><span class="firstLetter">3</span><b> questeurs</b></span> qui s'occupe de la geston administrative et financière pour assuré l'autonomie de l'AS.
+                    <p class="textPara"><span style="color: #25CCF7"><span class="firstLetter">3</span><b> questeurs</b></span> qui s'occupe de la gestion administrative et financière pour assuré l'autonomie de l'AS.
                     </p>
-                    <p class="textPara"><span style="color: #FD7272"><span class="firstLetter">12</span><b> secrétaires</b></span> qui constate et les votes et s'assure de leur validité.
+                    <p class="textPara"><span style="color: #FD7272"><span class="firstLetter">12</span><b> secrétaires</b></span> qui constatent les votes et s'assure de leur validité.
                     </p>
                     <br />
-                    <p class="textPara">
+                    <!--                     <p class="textPara">
                         Si l'ensemble des parlementaires est plutôt bien connu; <b>l'arrière garde</b> de fonctionnaires employés par l'Assemblée est moins connu ...
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>
@@ -91,21 +114,33 @@
                     <p>
                         Sont employés par l'Assemblée en plus des députées. L’effectif maximum est fixé à 1 349 par le réglement intérieur.
                         <br /><br />
-                        Distribution des ages des fonctionnaires:
-                        <ul>
+                        L'acces a ces fonctions se fait par concours et l'age moyen y est de 50 ans.
+                        <!--                         Distribution des ages des fonctionnaires: -->
+                        <!--                         <ul>
                             <li><b>56%</b> > 50 ans</li>
                             <li><b>30%</b> entre 40 ans et 50 ans</li>
                             <li><b>14%</b> moins de 40 ans</li>
-                        </ul>
-                        Avec une moyenne d'age de <b>50 ans</b>, composés a 64% d'hommes pour 36 % de femmes, l'acces a ces fonctions se fait par concours.
-                        <br /><br />
-                        Une hiérarchie des corps est défini, et sera noté dans ce qui suit:
+                        </ul> -->
+                        <!--                         Avec une moyenne d'age de <b>50 ans</b>, composés a 64% d'hommes pour 36 % de femmes, l'acces a ces fonctions se fait par concours. -->
+                        Voici un rapide apercu de la population:
+                        <br />
+                        <br />
+                        <div class="columns">
+                            <div class="column">
+                                <canvas id="chartAgeRep" width="100" height="100"></canvas>
+                            </div>
+                            <div class="column">
+                                <canvas id="chartSexRep" width="100" height="100"></canvas>
+                            </div>
+                        </div>
+                        <!--                         Une hiérarchie des corps est défini, et sera noté dans ce qui suit:
                         <ul>
-                            <li>* --> niveau 1</li>
-                            <li>** --> niveau 2</li>
-                            <li>*** --> niveau 3</li>
-                            <li>**** --> niveau 4</li>
+                            <li>*  niveau 1</li>
+                            <li>**  niveau 2</li>
+                            <li>***  niveau 3</li>
+                            <li>****  niveau 4</li>
                         </ul>
+ -->
                     </p>
                 </div>
             </div>
@@ -118,13 +153,15 @@
                 <div style=" margin-top: 20vh">
                     <h2 id="stepFonctionnaires" class="title"><span style="color: #FC427B">Généraux</span> VS <span style="color: #58B19F">Specialistes</span> </h2>
                     <p>
-                        Ces fonctionnaires sont divisés en <b>2 groupes</b>, que nous observerons bientôt dans le détails.
+                        Ces fonctionnaires sont divisés en <b>2 groupes</b>:
+                        <!-- , que nous observerons bientôt dans le détails. -->
                         <br /><br />
                         <b>77%</b> de l’effectif (<b>XXX employés</b>) sont affectés parmis les <b>4 corps généralistes</b>.
                         <br />
                         Les <b>23%</b> restants (<b>XXX employés</b>) sont répartient dans 20 corps spécialisés.
                         <br /><br />
-                        Pour donner une idée de la répartition; <b>93%</b> des fonctionnaires sont sur des services <b>législatifs ou administratifs</b> et <b>7%</b> dans les <b>services communs</b>.
+                        Les postes sont de nature législatifs ou administratifs à 93%.
+                        <!-- Pour donner une idée de la répartition; <b>93%</b> des fonctionnaires sont sur des services <b>législatifs ou administratifs</b> et <b>7%</b> dans les <b>services communs</b>. -->
                     </p>
                 </div>
             </div>
@@ -137,7 +174,13 @@
                 <div style=" margin-top: 20vh">
                     <h2 id="stepFoncsGeneraux" class="title">876 Fonctionnaires Generaux </h2>
                     <p class="textPara">
-                        <span style="color: #FEA47F"><span class="firstLetter">180</span> <b>Administrateurs</b> <span>*</span></span>
+                        <span style="color: #FEA47F"><span class="firstLetter">180</span> <b>Administrateurs</b> <span>*</span>
+                            <span class="tooltip" data-tooltip="Tooltip Text">
+                                4 <span class="icon">
+                                    <i class="fas fa-medal"></i>
+                                </span>
+                            </span>
+                        </span>
                         <br />
                         ils sont recrutés à un niveau bac+4. Une fois nommés au grade de conseiller, ils ont vocation à exercer des fonctions d’encadrement : 48 conseillers sont chefs de division et l’on compte 16 directeurs, 2 directeurs généraux et 2 secrétaires généraux.
                         Les administrateurs sont principalement affectés dans les services législatifs (96 % des emplois, en dehors des emplois d’encadrement), où ils apportent une aide juridique et technique aux députés dans l’élaboration de la loi et le contrôle de l’action du Gouvernement. Dans les services administratifs ou communs, ils occupent essentiellement des emplois d’encadrement.
@@ -234,10 +277,10 @@
             </div>
         </div>
     </div>
-    <footer style="padding-top: 12px;padding-bottom: 12px;background-color: #2C3A47; color:white">
+    <footer style="padding-top: 12px;padding-bottom: 12px; color:white">
         <div class="content has-text-centered">
             <p>
-                Data storytelling réalisé par <b><a href="https://jgthms.com" style="color: #2953f3;">Quanted Square</a></b>, 2019.
+                Data storytelling réalisé par <b><a href="https://quantedsquare.com/" style="color: rgba(255, 18, 120, 1);">Quanted Square</a></b>, 2019.
                 <br />
                 <a href="mailto:contact@quantedsquare.com">contact@quantedsquare.com</a>
                 <br />
@@ -251,6 +294,7 @@
     <script src="lib/d3.min.js"></script>
     <script src="utils.js"></script>
     <script src="core.js"></script>
+    <script src="secondaries.js"></script>
 </body>
 
 </html>
