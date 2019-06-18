@@ -122,9 +122,12 @@ var svgCercle = d3
     .append("div")
     .classed("svg-container", true)
     .append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " + $("#chart").width() + " 700")
-    .classed("svg-content-responsive", true);
+    // .attr("width", $(".is-three-fifths-desktop").width())
+    // .attr("height", "700")
+    //.attr("preserveAspectRatio", "xMinYMin meet")
+    //.attr("viewBox", "0 0 " + $("#chart").width() + 1000)
+    .attr("viewBox", "0 0 " + "700" + " 700")
+//.classed("svg-content-responsive", true);
 
 var pointsDeputies = svgCercle.append("g").attr("class", "deputies");
 
