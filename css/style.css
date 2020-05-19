@@ -3,6 +3,28 @@
 /*font-family: 'Archivo Black', sans-serif;
 font-family: 'Tenor Sans', sans-serif;*/
 
+@media only screen and (max-width: 1083px) {
+    #chart {
+        margin-left: 3%;
+        top: 30vh;
+        width: 55% !important;
+    }
+}
+
+@media only screen and (min-width: 1750px) {
+    #chart {
+
+        width: 45% !important;
+    }
+}
+
+@media only screen and (min-width: 1900px) {
+    #chart {
+
+        width: 40% !important;
+    }
+}
+
 body {
     color: rgba(15, 17, 32, 1);
 }
@@ -98,6 +120,12 @@ rect {
 .firstLetter {
     font-size: 28px;
     font-weight: bolder;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
 }
 
 footer {
