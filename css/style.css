@@ -3,6 +3,7 @@
 /*font-family: 'Archivo Black', sans-serif;
 font-family: 'Tenor Sans', sans-serif;*/
 
+
 @media only screen and (max-width: 1083px) {
     #chart {
         margin-left: 3%;
@@ -30,6 +31,26 @@ body {
 }
 
 p {
+    font-family: "Poppins", sans-serif;
+}
+
+.calltoscroll {
+    position: absolute;
+    top: 80vh;
+    left: 65%;
+    text-align: center;
+    z-index: 1;
+    font-size: 1rem;
+    color: white;
+}
+
+
+ul {
+    padding-left: 21px;
+}
+
+ul li {
+    list-style-type: initial;
     font-family: "Poppins", sans-serif;
 }
 

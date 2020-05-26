@@ -55,7 +55,7 @@ function drawBureau(nbLines, nbByLine, gapX, gapY) {
             data.push(res);
         }
     }
-    console.log("data: ", data.length);
+
     var linearScaleX = d3
         .scaleLinear()
         .domain([0, (nb + gapX) * nbByLine])
@@ -88,7 +88,6 @@ function drawAs() {
 
     var bureau = drawBureau(4, 4, -0.7, 1);
     dataCercle = dataCercle.concat(bureau);
-    console.log("bureau: ", bureau);
 
     dataCercle = dataCercle.concat(scalePos(testingTrigo(120, 40), 170, 510));
     dataCercle = dataCercle.concat(scalePos(testingTrigo(140, 50), 150, 530));
@@ -100,7 +99,7 @@ function drawAs() {
 
     dataCercle = dataCercle.concat(scalePos(testingTrigo(260, 70), 30, 650));
     dataCercle = dataCercle.concat(scalePos(testingTrigo(280, 77), 10, 670));
-    console.log("NB data: ", dataCercle);
+
     return dataCercle;
 }
 
@@ -112,7 +111,7 @@ var fonctionnaires = data.filter(e => e.group == "fonctionnaires");
 
 var params = {
     svgWidth: 670,
-    svgHeight: 600,
+    svgHeight: 500,
     squareWidth: 10,
     strokeWidth: 2
 };
@@ -126,7 +125,7 @@ var svgCercle = d3
     // .attr("height", "700")
     //.attr("preserveAspectRatio", "xMinYMin meet")
     //.attr("viewBox", "0 0 " + $("#chart").width() + 1000)
-    .attr("viewBox", "0 0 " + "700" + " 700")
+    .attr("viewBox", "0 0 " + "700" + " 550")
 //.classed("svg-content-responsive", true);
 
 var pointsDeputies = svgCercle.append("g").attr("class", "deputies");
@@ -430,7 +429,6 @@ function faitQuelquechose(positionScroll) {
 
 
     if (scrollStep != currentStep && steps[scrollStep]) {
-        console.log("Rendering step:", scrollStep);
         currentStep = scrollStep
         steps[scrollStep]();
     }

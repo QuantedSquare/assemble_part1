@@ -12,9 +12,6 @@
     <link rel="stylesheet" type="text/css" href="css/fullpage.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/af7fd2346c.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127627259-3"></script>
     <script>
@@ -46,39 +43,42 @@
         <div style="position: relative;">
             <div class="landing">
                 <h1 id="stepDefault" class="title bigTitle ">REGARD <br />SUR <br /> L' ASSEMBLEE</h1>
-                <p style="font-size: 0.3em;"> Sa composition, son fonctionnement et son financement reste obscur pour beaucoup.
+                <p style="font-size: 0.3em;"> Sa composition, son fonctionnement et son financement restent obscurs pour beaucoup.
                     <br><br>
                     <b style="border-bottom:solid 1px white">Partie 1</b>
                     <br>
-                    <b>Combien travaille réellement et pour quel occupation?</b>
+                    <b>Combien travaille réellement et pour quelles occupations?</b>
                 </p>
             </div>
+            <div class="calltoscroll">
+                ▼<br>
+            </div>
         </div>
-        <div id="chart" style="position: fixed;padding-top: 0;width: 50%">
+        <div id="chart" style="position: sticky; top:10vh; padding-top: 0;width: 50%; ">
         </div>
         <div>
-            <div style="width:35%; float:right; margin-top:130vh">
-                <div class="reader nobackground"></div>
-                <div>
+            <div style="width:35%; float:right; margin-top: 40vh">
+                <div class="reader"></div>
+                <div style=" margin-top: 20vh">
                     <h2 id="stepIntro" class="title"><span style="color: rgba(255, 18, 120, 1);">577</span> députées</h2>
-                    <p>Élus tous les 5 ans, ils siègent pour <b>voter les lois</b> et <b>controler l'action</b> du gouvernement.
+                    <p>Élus tous les 5 ans, ils siègent pour <b>voter les lois</b> et <b>contrôler l'action</b> du gouvernement.
                         <br />
                         <br />
                         <!-- Parmis eux, certains ont un statut et des missions différentes... -->
                     </p>
                 </div>
                 <div class="reader"></div>
-                <div style=" margin-top: 20vh">
+                <div style=" margin-top: 10vh">
                     <h2 id="stepPresident" class="title">Les 22 du Bureau</h2>
                     <p class="textPara">
                         <span style="color: #EAB543"><span class="firstLetter">1</span> <b>Président</b></span> dirige les débats et l'organisation de l'Assemblée.
                     </p>
                     <p class="textPara">
-                        <span style="color: #58B19F"><span class="firstLetter">6</span> <b>vice-présidents</b></span> sont disponible pour remplacé le président si ce dernier n'est pas disponible.
+                        <span style="color: #58B19F"><span class="firstLetter">6</span> <b>vice-présidents</b></span> sont disponibles pour remplacer le président si ce dernier n'est pas disponible.
                     </p>
-                    <p class="textPara"><span style="color: #25CCF7"><span class="firstLetter">3</span><b> questeurs</b></span> qui s'occupe de la gestion administrative et financière pour assuré l'autonomie de l'AS.
+                    <p class="textPara"><span style="color: #25CCF7"><span class="firstLetter">3</span><b> questeurs</b></span> qui s'occupent de la gestion administrative et financière pour assurer l'autonomie de l'AS.
                     </p>
-                    <p class="textPara"><span style="color: #FD7272"><span class="firstLetter">12</span><b> secrétaires</b></span> qui constatent les votes et s'assure de leur validité.
+                    <p class="textPara"><span style="color: #FD7272"><span class="firstLetter">12</span><b> secrétaires</b></span> qui constatent les votes et s'assure de leurs validités.
                     </p>
                     <br />
                 </div>
@@ -88,31 +88,8 @@
                     <p>
                         Sont employés par l'Assemblée en plus des députées. L’effectif maximum est fixé à 1 349 par le réglement intérieur.
                         <br /><br />
-                        L'age moyen y est de 50 ans composés a 64% d'hommes pour 36 % de femmes, l'acces a ces fonctions se fait par concours.
-                        <!--                         Distribution des ages des fonctionnaires: -->
-                        <!--                         <ul>
-                            <li><b>56%</b> > 50 ans</li>
-                            <li><b>30%</b> entre 40 ans et 50 ans</li>
-                            <li><b>14%</b> moins de 40 ans</li>
-                        </ul> -->
-                        <!--                         Avec une moyenne d'age de <b>50 ans</b>, composés a 64% d'hommes pour 36 % de femmes, l'acces a ces fonctions se fait par concours. -->
+                        L'age moyen est de 50 ans composés, à 64% d'hommes pour 36 % de femmes, l'accès à ces fonctions se fait par concours.
                         <br />
-                        <!--                         <div class="columns">
-                            <div class="column">
-                                <canvas id="chartAgeRep" width="100" height="100" style="z-index: 10;position: relative;"></canvas>
-                            </div>
-                            <div class="column">
-                                <canvas id="chartSexRep" width="100" height="100" style="z-index: 10;position: relative;"></canvas>
-                            </div>
-                        </div> -->
-                        <!--                         Une hiérarchie des corps est défini, et sera noté dans ce qui suit:
-                        <ul>
-                            <li>*  niveau 1</li>
-                            <li>**  niveau 2</li>
-                            <li>***  niveau 3</li>
-                            <li>****  niveau 4</li>
-                        </ul>
- -->
                     </p>
                 </div>
                 <div class="reader"></div>
@@ -124,120 +101,70 @@
                         <br /><br />
                         <b>77%</b> de l’effectif sont affectés parmis les <b>4 corps généralistes</b> et les <b>23%</b> restants sont répartient dans 20 corps spécialisés.
                         <br /><br />
-                        Les postes sont de nature législatifs ou administratifs à 93%.
+                        Les postes sont de natures législatifs ou administratifs à 93%.
                         <!-- Pour donner une idée de la répartition; <b>93%</b> des fonctionnaires sont sur des services <b>législatifs ou administratifs</b> et <b>7%</b> dans les <b>services communs</b>. -->
                     </p>
                 </div>
                 <div class="reader"></div>
                 <div style=" margin-top: 20vh">
-                    <h2 id="stepFoncsGeneraux" class="title">876 Fonctionnaires Generaux </h2>
+                    <h2 id="stepFoncsGeneraux" class="title">876 Fonctionnaires Généraux </h2>
                     <p class="textPara">
                         <span style="color: #FEA47F"><span class="firstLetter">180</span> <b>Administrateurs</b></span>
-                        <span style="margin-left:15px" class="tooltip" data-tooltip="Tooltip Text">
-                            <b>4</b><span class="icon">
-                                <i class="fas fa-medal"></i><b></b>
-                            </span>
-                        </span>
                         <br />
-                        ils sont recrutés à un niveau bac+4. Une fois nommés au grade de conseiller, ils ont vocation à exercer des fonctions d’encadrement : 48 conseillers sont chefs de division et l’on compte 16 directeurs, 2 directeurs généraux et 2 secrétaires généraux.
-                        Les administrateurs sont principalement affectés dans les services législatifs (96 % des emplois, en dehors des emplois d’encadrement), où ils apportent une aide juridique et technique aux députés dans l’élaboration de la loi et le contrôle de l’action du Gouvernement. Dans les services administratifs ou communs, ils occupent essentiellement des emplois d’encadrement.
+                        Recrutés à un niveau bac+4. Une fois nommés au grade de conseiller, ils ont vocation à exercer des fonctions d’encadrement : <b>48 conseillers sont chefs de division</b> et l’on compte <b>16 directeurs</b>, <b>2 directeurs généraux</b> et <b>2 secrétaires généraux</b>.<br><br>
+                        Principalement affectés dans les services législatifs (96 % des emplois, en dehors des emplois d’encadrement), ils apportent une aide juridique et technique aux députés dans l’élaboration de la loi et le contrôle de l’action du Gouvernement.
+                        <br><br>
+                        Dans les services administratifs ou communs, ils occupent essentiellement des <b>emplois d’encadrement</b>.
                     </p>
                     <p class="textPara">
                         <span style="color: #1B9CFC"><span class="firstLetter">115</span> <b>Administrateurs-adjoints</b></span>
-                        <span style="margin-left:15px" class="tooltip" data-tooltip="Tooltip Text">
-                            <b>3</b><span class="icon">
-                                <i class="fas fa-medal"></i><b></b>
-                            </span>
                         </span>
                         <br />
-                        recrutés à un niveau bac+3, ils sont chargés de tâches très diverses en fonction de leur affectation. Dans les services administratifs, ils occupent désormais tous les emplois tenus précédemment par des administrateurs. Les informaticiens appartiennent au corps des administrateurs-adjoints (dont 23 informaticiens).
+                        Recrutés à un niveau bac+3. Ils sont chargés de tâches très diverses en fonction de leur affectation. Dans les services administratifs, ils occupent désormais tous les emplois tenus précédemment par des administrateurs. Les informaticiens (<b>23 employées</b>) appartiennent au corps des administrateurs-adjoints.
                     </p>
                     <p class="textPara">
-                        <span style="color: #55E6C1"><span class="firstLetter">172</span> <b>Assistants de direction et de gestion</b> </span> <span style="margin-left:15px" class="tooltip" data-tooltip="Tooltip Text">
-                            <b>2</b><span class="icon">
-                                <i class="fas fa-medal"></i><b></b>
-                            </span>
-                        </span>
+                        <span style="color: #55E6C1"><span class="firstLetter">172</span> <b>Assistants de direction et de gestion</b> </span>
                         <br />
-                        les membres de ce corps, institué à compter du 1er février 2016 et résultant de la fusion des corps des secrétaires des services et des secrétaires administratifs, sont chargés des tâches de secrétariat de direction ou de tâches administratives de gestion ; une part importante d’entre eux est recrutée par concours interne au sein de la catégorie des agents.
+                        Institué à compter du 1er février 2016, résultant de la fusion des corps des secrétaires des services et des secrétaires administratifs. <br><br>
+                        Ils sont chargés des tâches de secrétariat de direction ou de tâches administratives de gestion. Une part importante d’entre eux est recrutée par concours interne au sein de la catégorie des agents.
                     </p>
                     <p class="textPara">
                         <span style="color: #D6A2E8"><span class="firstLetter">409</span> <b>Agents</b> </span>
-                        <span style="margin-left:15px" class="tooltip" data-tooltip="Tooltip Text">
-                            <b>1</b><span class="icon">
-                                <i class="fas fa-medal"></i><b></b>
-                            </span>
-                        </span>
                         <br />
                         Recrutés sans condition de diplôme ou d’expérience professionnelle, ils sont principalement chargés des fonctions d’<b>accueil</b>, de <b>service intérieur</b> et de guide, de <b>chauffeurs</b>, de <a href="https://www.midilibre.fr/2018/06/06/a-l-assemblee-6-465-eur-minimum-de-salaire-hors-primes-pour-distribuer-les-ramettes-de-papier,1682256.php">changeurs de ramettes de papier</a>.
                     </p>
                 </div>
+                <div class="reader"></div>
                 <div class="reader nobackground is-hidden-desktop"></div>
                 <div style=" margin-top: 20vh">
                     <h2 id="stepFoncsSpe" class="title">318 Details Fonctionnaires Spécialisés </h2>
                     <p class="textPara">
-                        <span style="color: #F97F51"><span class="firstLetter">64</span> <b>La réalisation des comptes rendus</b></span>
-                        <ul>
-                            <li>64 rédacteurs des comptes rendus <span>*</span></li>
-                            <li>2 directeurs, recrutés à un niveau bac+4 <span>*</span></li>
-                        </ul>
+                        <span style="color: #F97F51"><span class="firstLetter">64</span> <b>La réalisation des comptes rendus</b></span><br>
+                        dont 2 directeurs, recrutés à un niveau bac+4.
                     </p>
                     <p class="textPara">
-                        <span style="color: #B33771"><span class="firstLetter">56</span> <b>La sécurité</b> gardiens-surveillants </span>
-                        <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                            <b>1</b><span class="icon">
-                                <i class="fas fa-medal"></i><b></b>
-                            </span>
-                        </span>, recrutés sur concours réservé aux militaires justifiant d’au moins quinze années de services.
+                        <span style="color: #B33771"><span class="firstLetter">56</span><b> La sécurité</b> </span><br>
+                        Gardiens-surveillants, recrutés sur concours réservé aux militaires justifiant d’au moins quinze années de services.
                     </p>
                     <p class="textPara">
                         <span style="color: #3B3B98"><span class="firstLetter">27</span> <b>L’informatique</b></span>
                         <ul>
-                            <li>2 ingénieurs
-                                <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>4</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span></li>
-                            <li>2 adjoints au responsable des applications <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>3,5</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span></li>
-                            <li>23 techniciens informatiques <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>2</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span></li>
+                            <li>2 ingénieurs</li>
+                            <li>2 adjoints au responsable des applications </li>
+                            <li>23 techniciens informatiques</li>
                         </ul>
                     </p>
                     <p class="textPara">
                         <span style="color: #9AECDB"><span class="firstLetter">45</span> <b>Le bâtiment</b></span>
                         <ul>
-                            <li>9 ingénieurs et architectes <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>4</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span></li>
-                            <li>2 dessinateurs <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>3</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span></li>
-                            <li>34 ouvriers professionnels de different niveau <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>2</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span> et <span style="margin:0 8px" class="tooltip" data-tooltip="Tooltip Text">
-                                    <b>1</b><span class="icon">
-                                        <i class="fas fa-medal"></i><b></b>
-                                    </span>
-                                </span> </li>
+                            <li>9 ingénieurs et architectes</li>
+                            <li>2 dessinateurs </li>
+                            <li>34 ouvriers professionnels</li>
                         </ul>
                     </p>
                     <p class="textPara">
-                        <span style="color: #6D214F"><span class="firstLetter">53</span> <b>La restauration</b></span>
-                        l’effectif compte employés des restaurants répartis en trois catégories.
+                        <span style="color: #6D214F"><span class="firstLetter">53</span> <b>La restauration</b></span><br>
+                        Répartis en trois catégories.
                     </p>
                     <p class="textPara">
                         <span style="color: #182C61"><span class="firstLetter">9</span> <b>Emplois divers</b></span>
@@ -253,8 +180,8 @@
                 <div class="reader"></div>
                 <div style=" margin-top: 20vh">
                     <h2 id="stepFinal" class="title">Conclusion</h2>
-                    Sans cette approche très descriptive et quantitative, il aurait été difficile de bien rendre compte de la portée du budget de l'assemblée.
-                    Maintenant qu'un regard précis a été porté; restez a l'affut!
+                    Sans cette approche descriptive et quantitative, il aurait été difficile de rendre compte de la portée du budget de l'assemblée.
+                    Les ordres de grandeur maintenant établi; restez à l'affut pour la seconde partie, l'exploration des comptes!
                     <br /><br />
                     Suivez notre étude en deux partie pour faire lumière sur cette organe de la V Republique, sont budget et ceux qui la compose.
                     <br /> <br />
@@ -278,8 +205,7 @@
             </p>
         </div>
     </footer>
-    <script src="lib//jquery-3.3.1.min.js"></script>
-    <script src="lib/fullpage.min.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/d3.min.js"></script>
     <script src="utils.js"></script>
     <script src="core.js"></script>
