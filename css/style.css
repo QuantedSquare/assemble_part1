@@ -6,10 +6,12 @@ font-family: 'Tenor Sans', sans-serif;*/
 
 @media only screen and (max-width: 600px) {
     .bigTitle {
-        font-size: 12px;
-        color: white;
+        font-size: 24px !important;
     }
 
+    .landing p {
+        font-size: 15px !important;
+    }
 }
 
 @media only screen and (max-width: 1083px) {
