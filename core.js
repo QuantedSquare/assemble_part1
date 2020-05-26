@@ -111,7 +111,7 @@ var fonctionnaires = data.filter(e => e.group == "fonctionnaires");
 
 var params = {
     svgWidth: 670,
-    svgHeight: 500,
+    svgHeight: 600,
     squareWidth: 10,
     strokeWidth: 2
 };
